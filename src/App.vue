@@ -5,13 +5,14 @@
         <nav class="navbar is-transparent">
           <div class="container">
             <div class="navbar-brand">
-              <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+              <span class="navbar-burger burger" data-target="navbarMenuHeroB" 
+ v-on:click="showMobileMenu = !showMobileMenu" v-bind:class="{'is-active': showMobileMenu}">
                 <span></span>
                 <span></span>
                 <span></span>
               </span>
             </div>
-            <div id="navbarMenuHeroB" class="navbar-menu">
+            <div id="navbarMenuHeroB" class="navbar-menu" v-on:click="showMobileMenu = !showMobileMenu" v-bind:class="{'is-active': showMobileMenu}">
               <div class="navbar-end">
                 <router-link class="navbar-item is-active" to="/">Home</router-link>
                 <router-link class="navbar-item" to="/Gallery">Gallery</router-link>
@@ -28,7 +29,7 @@
         class="hero-background is-transparent"
         src="Bishop_s Waltham Palace.jpg"
       />
-      <div class="hero-body"  >
+      <div class="hero-body">
         <div class="container has-text-centered" style="overflow: auto; max-height:800px">
           <transition name="fade" mode="out-in">
             <router-view />
@@ -67,6 +68,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  data: function() {
+    return {
+      showMobileMenu: false
+    };
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 .hero.has-backgroundis-primary {
@@ -101,5 +111,3 @@
   opacity: 0;
 }
 </style>
-
-
