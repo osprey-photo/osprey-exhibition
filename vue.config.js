@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath:'/osprey-exhibition//',
+  publicPath:'/osprey-exhibition/',
   outputDir:'docs',
 }

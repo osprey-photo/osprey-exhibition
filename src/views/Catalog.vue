@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow: auto; max-height:800px">
     <CatalogRow :key="row.rowid" v-for="row in entries" v-bind:entries="row" />
   </div>
 </template>
@@ -7,8 +7,6 @@
 <script>
 // @ is an alias to /src
 import CatalogRow from "@/components/CatalogRow";
-import imgdata from "../assets/data.json";
-
 
 /**
  * Returns an array with arrays of the given size.
@@ -38,7 +36,7 @@ export default {
   },
   computed: {
     entries() {
-      let e = chunkArray(imgdata.entries, 4);
+      let e = chunkArray(this.$store.getters.getAll, 4);
       console.log(e);
       return e;
     }

@@ -22,7 +22,10 @@
           </div>
 
           <div v-else>
-            <a href="#" @click="vote()" class="card-footer-item">Vote as Favourite</a>
+            <div v-if="isFavourite">Favourite !</div>
+            <div v-else>
+              <a href="#" @click="vote()" class="card-footer-item">Vote as Favourite</a>
+            </div>
           </div>
           <a href="#" @click="showModal = true" class="card-footer-item">More Information</a>
         </footer>
@@ -41,11 +44,14 @@
                 </figure>
               </div>
               <div class="column">
-                <p class="title ">{{title}}</p>
+                <p class="title">{{title}}</p>
                 <p class="subtitle">{{author}}</p>
                 <p class>{{notes}}</p>
                 <table class="table has-text-left">
-                  <tr :key="index" v-for="(value, name,index) in exif"><td>{{ name }}</td><td>{{ value }}</td></tr>
+                  <tr :key="index" v-for="(value, name,index) in exif">
+                    <td>{{ name }}</td>
+                    <td>{{ value }}</td>
+                  </tr>
                 </table>
               </div>
             </div>
@@ -65,11 +71,15 @@ export default {
   components: { Spinner },
   data() {
     return {
-      mensaje: "Lorem lorem lorem",
       showModal: false,
       isVoting: false,
       isError: false
     };
+  },
+  computed: {
+    isFavourite() {
+      return this.$store.getters.isFavourite(this.entryid);
+    }
   },
   methods: {
     async vote() {
@@ -81,6 +91,7 @@ export default {
             entryid: this.entryid
           }
         );
+        this.$store.commit("addFavourite", this.entryid);
         console.log(data);
       } catch (err) {
         this.isError = true;
