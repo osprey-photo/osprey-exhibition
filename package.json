@@ -13,11 +13,8 @@
     "sanitize-filename": "^1.6.3",
     "swiper": "^5.4.5",
     "vue": "^2.6.11",
-    "vue-awesome-swiper": "^4.1.1",
     "vue-axios": "^2.1.5",
     "vue-flux": "^6.2.2",
-    "vue-photoswipe.js": "^2.0.23",
-    "vue-picture-swipe": "^2.0.0",
     "vue-router": "^3.4.3",
     "vue-simple-spinner": "^1.2.10",
     "vuex": "^3.5.1"

@@ -17,17 +17,28 @@
 
       <template v-slot:controls>
         <flux-controls />
-      </template>
-      <template v-slot:pagination>
 
+        <!--  -->
       </template>
+      <template v-slot:pagination></template>
 
       <template v-slot:index>
         <flux-index />
       </template>
     </vue-flux>
-    <button @click="$refs.slider.show('next')">NEXT</button>
-    <button @click="toggle">FullScreen</button>
+    <div class="navbar is-transparent">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item">
+            <button @click="toggle">Full Screen</button>
+          </div>
+          <!-- <div class="navbar-item">
+            <button @click="showGallery=false">Leave Gallery</button>
+          </div> -->
+        </div>
+        <!-- navbar items -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,8 +51,10 @@ import {
   // FluxPagination,
   FluxPreloader
 } from "vue-flux";
+
 export default {
   name: "GalleryComp3",
+  properties: ["autoplay"],
   components: {
     VueFlux,
     FluxCaption,
@@ -52,48 +65,44 @@ export default {
   },
   data() {
     return {
-      vfOptions: {
-        autoplay: true,
-        enableGestures: true,
-        allowFullscreen: true
-      },
+      mounted: false,
       vfTransitions: ["fade"]
     };
   },
+
   computed: {
     vfImages() {
       let i = this.$store.getters.getAll.map(e => {
         return encodeURI(e.large);
       });
-      console.log(i);
+      // console.log(i);
       return i;
-      //  return ['gallery/1_Alistair%20Hood_Larger%20than%20Life_large.png'];
     },
     vfCaptions() {
       return this.$store.getters.getAll.map(e => {
-        return e.title;
+        return `"${e.title}" by ${e.author}`;
       });
+    },
+    vfOptions() {
+      let opts = {
+        autoplay: this.$attrs.autoplay,
+        enableGestures: true,
+        allowFullscreen: true,
+        bindKeys: true
+      };
+      return opts;
     }
   },
-  mounted() {},
+  mounted() {
+    this.mounted = true;
+  },
   methods: {
-    beforeChange(...args) {
-      console.log("beforeChange", ...args); // eslint-disable-line
-    },
     toggle() {
-      console.log(this.$refs.slider.Display.toggleFullScreen());
       this.$refs.slider.Display.toggleFullScreen();
-   }
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.img {
-  width: 100%;
-  height: auto;
-  max-height: 500px;
-}
-.frame {
-}
 </style>

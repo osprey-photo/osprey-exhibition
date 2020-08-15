@@ -16,6 +16,11 @@
                 <span></span>
               </span>
             </div>
+            <div class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item">Bishop's Waltham Photographic Society</a>
+              </div>
+            </div>
             <div
               id="navbarMenuHeroB"
               class="navbar-menu"
@@ -34,11 +39,7 @@
           </div>
         </nav>
       </div>
-      <!-- <img
-        alt="Bishops Waltham Palace"
-        class="hero-background is-transparent"
-        src="Bishop_s Waltham Palace.jpg"
-      />-->
+      <img alt="Bishops Waltham Palace" class="hero-background is-transparent" src="bgd.jpg" />
       <div class="hero-body">
         <div class="container has-text-centered">
           <transition name="fade" mode="out-in">
@@ -89,15 +90,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#app {
-  width: 100%;
-  // height: 90vh;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-image: url("/result.png");
-}
+// #app {
+//   width: 100%;
+//   // height: 90vh;
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   background-size: cover;
+//   background-attachment: fixed;
+//   background-image: url("/osprey-exibition/result.png");
+// }
 
 .hero-background {
   position: absolute;
@@ -106,6 +107,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
+  opacity: 0.5;
 }
 .hero-background.is-transparent {
 }
