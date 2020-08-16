@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <vue-flux
       :options="vfOptions"
       :transitions="vfTransitions"
@@ -25,16 +25,16 @@
       <template v-slot:index>
         <flux-index />
       </template>
-    </vue-flux>
-    <div class="navbar is-transparent">
+    </vue-flux> <button @click="toggle">Full Screen</button>
+    <div class="navbar is-transparent is-active">
       <div class="navbar-menu">
         <div class="navbar-start">
           <div class="navbar-item">
-            <button @click="toggle">Full Screen</button>
+           
           </div>
           <!-- <div class="navbar-item">
             <button @click="showGallery=false">Leave Gallery</button>
-          </div> -->
+          </div>-->
         </div>
         <!-- navbar items -->
       </div>

@@ -40,11 +40,13 @@
         </nav>
       </div>
       <img alt="Bishops Waltham Palace" class="hero-background is-transparent" src="bgd.jpg" />
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <transition name="fade" mode="out-in">
-            <router-view />
-          </transition>
+      <div style="position: relative; top: -35px;">
+        <div class="hero-body py-0">
+          <div class="container has-text-centered">
+            <transition name="fade" mode="out-in">
+              <router-view />
+            </transition>
+          </div>
         </div>
       </div>
 
@@ -111,7 +113,10 @@ export default {
 }
 .hero-background.is-transparent {
 }
-
+.hero-body {
+  position: relative;
+  top: "-15px";
+}
 .has-image-centered {
   margin-left: auto;
   margin-right: auto;

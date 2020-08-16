@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow: auto; max-height:800px">
+  <div style="overflow: auto; max-height: 90vh">
     <CatalogRow :key="row.rowid" v-for="row in entries" v-bind:entries="row" />
   </div>
 </template>

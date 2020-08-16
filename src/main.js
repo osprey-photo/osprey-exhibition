@@ -4,9 +4,9 @@ import router from "./router";
 import store from "./store";
 
 import "./assets/sass/main.scss";
-import VuePictureSwipe from "vue-picture-swipe";
+// import VuePictureSwipe from "vue-picture-swipe";
 
-Vue.component("vue-picture-swipe", VuePictureSwipe);
+// Vue.component("vue-picture-swipe", VuePictureSwipe);
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
