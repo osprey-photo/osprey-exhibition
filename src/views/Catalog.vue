@@ -30,13 +30,14 @@ function chunkArray(myArray, chunk_size) {
 }
 
 export default {
-  name: "Gallery",
+  name: "Catalog",
+  properties: [ 'gallery' ],
   components: {
     CatalogRow
   },
   computed: {
     entries() {
-      let e = chunkArray(this.$store.getters.getAll, 4);
+      let e = chunkArray(this.$store.getters.getAll(this.gallery), 4);
       console.log(e);
       return e;
     }

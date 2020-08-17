@@ -7,14 +7,14 @@
 <script>
 export default {
   name: "GalleryComp2",
-  properties: ["autoplay"],
+  properties: ["autoplay","gallery"],
   components: {},
   data() {
     return {};
   },
   computed: {},
   mounted() {
-    const items = this.$store.getters.getAll.map(e => {
+    const items = this.$store.getters.getAll(this.gallery).map(e => {
       return {
         src: e.large,
         w: e.size.width,
@@ -44,15 +44,12 @@ export default {
         return true;
       }
     });
-    this.$photoswipe.listen("beforeChange", this.beforeChange);
-    setInterval(function(){this.$photoswipe.next();},4000);
+    this.$photoswipe.listen("close", this.beforeChange);
+    // setInterval(function(){this.$photoswipe.next();},4000);
   },
   destroy() {
     this.$photoswipe.close();
-  },
-
-  beforeDestroy() {
-    this.$photoswipe.unlisten("beforeChange", this.beforeChange);
+    console.log('beforeDestroy')
   },
   methods: {
     beforeChange(...args) {

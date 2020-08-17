@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import imgdata from "../assets/data.json";
 Vue.use(Vuex);
 
+
+
 export default new Vuex.Store({
   state: {
     entries: imgdata.entries,
@@ -10,7 +12,8 @@ export default new Vuex.Store({
     favouriteEntry: []
   },
   getters: {
-    getAll: function (state) {
+    getAll: (state) => (gallery) => {
+      console.log("Vuex getting gallery" + gallery);
       return state.entries;
     },
     isFavourite: (state) => (e) => {

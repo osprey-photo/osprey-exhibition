@@ -18,7 +18,7 @@
             </div>
             <div class="navbar-menu">
               <div class="navbar-start">
-                <a class="navbar-item">Bishop's Waltham Photographic Society</a>
+                <a class="navbar-item" href="https://bishopswalthamphotosociety.co.uk">Bishop's Waltham Photographic Society</a>
               </div>
             </div>
             <div
@@ -30,9 +30,9 @@
               <div class="navbar-end">
                 <router-link class="navbar-item is-active" to="/">Home</router-link>
                 <router-link class="navbar-item" to="/Gallery">Gallery</router-link>
-                <router-link class="navbar-item" to="/Catalog">Catalog</router-link>
                 <router-link class="navbar-item" to="/Junior">Junior</router-link>
                 <router-link class="navbar-item" to="/Panels">Panels</router-link>
+                <router-link class="navbar-item" to="/Catalog">Catalog</router-link>
                 <router-link class="navbar-item" to="/Guestbook">Guestbook</router-link>
               </div>
             </div>
@@ -53,27 +53,7 @@
       <div class="hero-foot">
         <nav class="tabs is-boxed is-fullwidth">
           <div class="container">
-            <p></p>
-            <!-- <ul>style="overflow: auto; max-height:600px"
-              <li class="is-active">
-                <a>Overview</a>
-              </li>
-              <li>
-                <a>Modifiers</a>
-              </li>
-              <li>
-                <a>Grid</a>
-              </li>
-              <li>
-                <a>Elements</a>
-              </li>
-              <li>
-                <a>Components</a>
-              </li>
-              <li>
-                <a>Layout</a>
-              </li>
-            </ul>-->
+            <p>All images are copyright of the individual photographers</p>
           </div>
         </nav>
       </div>

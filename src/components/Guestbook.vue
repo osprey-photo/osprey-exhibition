@@ -1,10 +1,9 @@
 <template>
   <div>
+    <article class="box has-background-grey-lighter">
+      <p class="title">Guest Book</p>
+    </article>
     <div class="section has-text-left">
-      <div class="container">
-        <p class="title">Guest Book</p>
-      </div>
-
       <div class="box">
         <p>We'd love to hear from you, and your thoughts on the Exhibition.</p>
         <div class="field">
