@@ -14,7 +14,9 @@ export default {
   },
   computed: {},
   mounted() {
-    const items = this.$store.getters.getAll(this.gallery).map(e => {
+    console.log(this)
+    const items = this.$store.getters.getAll(this.$attrs.gallery).map(e => {
+      console.log(e)
       return {
         src: e.large,
         w: e.size.width,
@@ -40,7 +42,9 @@ export default {
           captionEl.children[0].innerHTML = "hello";
           return false;
         }
-        captionEl.children[0].innerHTML = `<span class="title has-text-white">"${item.title}"</span><span class="title">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <span class="title has-text-white">${item.author}</span>`;
+        captionEl.children[0].style.textAlign="center";
+        delete captionEl.children[0].style.maxWidth;
+        captionEl.children[0].innerHTML = `<span class="subtitle has-text-white">"${item.title}"</span><span class="subtitle">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <span class="subtitle has-text-white">${item.author}</p>`;
         return true;
       }
     });
@@ -66,6 +70,9 @@ export default {
   height: auto;
   max-height: 500px;
 }
-.frame {
+
+.pswp__caption__center {
+  text-align: center;
 }
+
 </style>

@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     entries() {
-      let e = chunkArray(this.$store.getters.getAll(this.gallery), 4);
+      let e = chunkArray(this.$store.getters.getAll(this.$attrs.gallery), 4);
       console.log(e);
       return e;
     }

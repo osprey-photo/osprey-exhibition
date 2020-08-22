@@ -28,7 +28,8 @@ const routes = [
   {
     path: "/catalog",
     name: "Catalog",
-    component: Catalog
+    component: Catalog,
+    props: {gallery:'members'}
   },
   {
     path: "/junior",

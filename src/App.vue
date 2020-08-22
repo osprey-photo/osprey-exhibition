@@ -40,7 +40,7 @@
         </nav>
       </div>
       <img alt="Bishops Waltham Palace" class="hero-background is-transparent" src="bgd.jpg" />
-      <div style="position: relative; top: -35px;">
+      <div style="position: relative; top: -5px;">
         <div class="hero-body py-0">
           <div class="container has-text-centered">
             <transition name="fade" mode="out-in">
@@ -95,7 +95,7 @@ export default {
 }
 .hero-body {
   position: relative;
-  top: "-15px";
+  // top: "-15px";
 }
 .has-image-centered {
   margin-left: auto;

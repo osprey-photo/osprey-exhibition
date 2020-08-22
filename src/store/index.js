@@ -1,31 +1,35 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import imgdata from "../assets/data.json";
+import data from './data.js';
 Vue.use(Vuex);
-
-
 
 export default new Vuex.Store({
   state: {
-    entries: imgdata.entries,
+    entries: data.entries,
+    imgdata: data.imgdata,
+
     currentEntry: 0,
     favouriteEntry: []
   },
   getters: {
-    getAll: (state) => (gallery) => {
+    getAll: state => gallery => {
       console.log("Vuex getting gallery" + gallery);
-      return state.entries;
+      return state.entries
+        .map(e => {
+          return state.imgdata[e];
+        })
+        .filter(e => e.categories.includes(gallery));
     },
-    isFavourite: (state) => (e) => {
-      return state.favouriteEntry.includes(e);
+    isFavourite: state => id => {
+      return state.favouriteEntry.includes(id);
     }
   },
   mutations: {
     setCurrent(state, entry) {
       state.currentEntry = entry;
     },
-    addFavourite(state, favourite) {
-      state.favouriteEntry.push(favourite);
+    addFavourite(state, favouriteId) {
+      state.favouriteEntry.push(favouriteId);
     }
   },
   actions: {},

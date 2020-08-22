@@ -62,7 +62,7 @@ export default {
     selfGuided() {
       this.autoplay = false;
       this.showGallery = true;
-      this.gallery = "selfguided";
+      this.gallery = "members";
     },
     guided() {
       this.autoplay = true;
