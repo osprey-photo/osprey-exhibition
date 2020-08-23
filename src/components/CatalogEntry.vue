@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tile is-transparent">
+    <div class="is-transparent is-fullheight">
       <div class="card is-transparent">
         <div class="card-image">
           <figure class="imgage is-square">
@@ -109,4 +109,5 @@ export default {
   width: 200;
   height: 200;
 }
+
 </style>

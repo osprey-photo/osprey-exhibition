@@ -43,7 +43,6 @@ export default {
           return false;
         }
         captionEl.children[0].style.textAlign="center";
-        delete captionEl.children[0].style.maxWidth;
         captionEl.children[0].innerHTML = `<span class="subtitle has-text-white">"${item.title}"</span><span class="subtitle">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <span class="subtitle has-text-white">${item.author}</p>`;
         return true;
       }

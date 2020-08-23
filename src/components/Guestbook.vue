@@ -1,6 +1,6 @@
 <template>
   <div>
-    <article class="box has-background-grey-lighter">
+    <article class="box has-background-link-light">
       <p class="title">Guest Book</p>
     </article>
     <div class="section has-text-left">

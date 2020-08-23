@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Panels from "../views/Panels.vue";
 import Gallery from "../views/Gallery.vue";
-import Junior from "../views/Junior.vue";
+// import Junior from "../views/Junior.vue";
 import Catalog from "../views/Catalog.vue";
 import Guestbook from "../components/Guestbook.vue";
 
@@ -34,7 +34,8 @@ const routes = [
   {
     path: "/junior",
     name: "Junior",
-    component: Junior
+    component: Catalog,
+    props: {gallery:'junior'}
   },
   {
     path: "/guestbook",

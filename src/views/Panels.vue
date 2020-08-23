@@ -2,7 +2,7 @@
   <div class="tile is-ancestor">
     <div class="tile is-vertical">
       <div class="tile is-parent">
-        <article class="tile is-child notification has-background-grey-lighter">
+        <article class="tile is-child notification has-background-link-light">
           <p class="title">Panels</p>Members' work designed to be shown together as a panel.
           <div class="content">
             <!-- Content -->
