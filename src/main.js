@@ -10,11 +10,6 @@ import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios)
 
-import Embed from 'v-video-embed'
-
-// global register
-Vue.use(Embed);
-
 import PhotoSwipe from 'vue-photoswipe.js';
 import 'vue-photoswipe.js/dist/static/css/photoswipe.css';
 Vue.use(PhotoSwipe);

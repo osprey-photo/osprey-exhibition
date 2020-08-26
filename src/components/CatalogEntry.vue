@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="is-transparent is-fullheight">
-      <div class="card is-transparent">
+    <div class="is-transparent">
+      <div class="card is-transparent" >
         <div class="card-image">
           <figure class="imgage is-square">
             <img v-bind:src="thumbnail" alt="Placeholder image" class="pt-2" />
@@ -109,5 +109,11 @@ export default {
   width: 200;
   height: 200;
 }
-
+.card {
+    display:flex;
+    flex-direction: column;
+}
+.cart-footer {
+    margin-top: auto;
+}
 </style>

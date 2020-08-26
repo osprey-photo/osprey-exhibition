@@ -1,6 +1,6 @@
 <template>
-  <div class="container" style="overflow-y: auto; overflow-x: hidden; max-height: 90vh; ">
-    <div v-if="!showGallery && !autoplay">
+  <div>
+    <div v-if="!showGallery && !showModal">
       <article class="box has-background-link-light">
         <p class="title">Choose which gallery to look around</p>
       </article>
@@ -9,13 +9,8 @@
           <div class="tile is-parent">
             <article class="tile is-child notification">
               <p class="title">Guided Tour</p>
-              <div class="content subtitle">All Members' images in a video slideshow</div>
-              <video-embed
-                class="video"
-                css="embed-responsive-16by9"
-                src="https://vimeo.com/382890997"
-              ></video-embed>
-              <!-- <button class="button is-large" @click="guided()">Enter...</button> -->
+              <div class="content subtitle">All Members' images in a video slideshow</div>Is
+              <button class="button is-large is-link" @click="video_members()">Play...</button>
             </article>
           </div>
           <div class="tile is-parent">
@@ -32,12 +27,7 @@
             <article class="tile is-child notification">
               <p class="title">Junior Competition</p>
               <div class="content subtitle">All Junior Competition images in a video slideshow</div>
-              <video-embed
-                class="video"
-                css="embed-responsive-16by9"
-                src="https://vimeo.com/372182220"
-              ></video-embed>
-              <!-- <button class="button is-large" @click="guided()">Enter...</button> -->
+              <button class="button is-large is-link" @click="video_junior()">Play...</button>
             </article>
           </div>
           <div class="tile is-parent">
@@ -54,18 +44,20 @@
 
     <GalleryComp2
       @hook:beforeDestroy="reset()"
-      v-if="showGallery && !autoplay"
-      v-bind:autoplay="autoplay"
+      v-if="showGallery && !showModal"
       v-bind:gallery="gallery"
     />
 
-    <div class="container">
-      <video-embed
-        class="video"
-        v-if="autoplay"
-        css="embed-responsive-16by9"
-        src="https://vimeo.com/382890997"
-      ></video-embed>
+    <div v-show="showModal" @close="showModal = false"  @hook:beforeDestroy="reset()" class="modal is-active">
+      <div class="modal-background"></div>
+      <div id="videoWrapper" class="modal-content">
+        <div class="container">
+          <div class="videoWrapper">
+            <vueVimeoPlayer ref="player" :video-id="videoID" :autoplay="true" />
+          </div>
+        </div>
+      </div>
+      <button class="modal-close" @click="showModal = false"></button>
     </div>
   </div>
 </template>
@@ -74,20 +66,22 @@
 // @ is an alias to /src
 // import GalleryComp3 from "@/components/GalleryComp3";
 import GalleryComp2 from "@/components/GalleryComp2";
-// import { vueVimeoPlayer } from "vue-vimeo-player";
+import { vueVimeoPlayer } from "vue-vimeo-player";
 export default {
   name: "Gallery",
   data() {
     return {
+      videoID: "382890997",
       showGallery: false,
       gallery: "",
-      autoplay: false
+      autoplay: false,
+      showModal: false
     };
   },
   components: {
     // GalleryComp3,
     GalleryComp2,
-    
+    vueVimeoPlayer
   },
   mounted() {
     this.$photoswipe.listen("close", this.reset);
@@ -109,6 +103,15 @@ export default {
     },
     reset() {
       this.showGallery = false;
+      this.showModal = false;
+    },
+    video_junior() {
+      this.videoID = "372182220";
+      this.showModal = true;
+    },
+    video_members() {
+      this.videoID = "382890997";
+      this.showModal = true;
     }
   },
   beforeRouteUpdate(to, from, next) {
@@ -121,4 +124,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#videoWrapper {
+  max-height: 100vh !important;
+}
 </style>

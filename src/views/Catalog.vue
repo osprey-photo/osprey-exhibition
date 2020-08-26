@@ -1,12 +1,20 @@
 <template>
-  <div style="overflow-y: auto; overflow-x: hidden; max-height: 90vh">
-    <CatalogRow :key="row.rowid" v-for="row in entries" v-bind:entries="row" />
+  <div style=" ">
+   <CatalogRow :key="row.rowid" v-for="row in entries" v-bind:entries="row" /> 
+
+    <!-- <div class="tile is-ancestor">
+    <div class="tile is-parent">-->
+
+      <!-- </div>
+      </div>-->
+   
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import CatalogRow from "@/components/CatalogRow";
+ import CatalogRow from "@/components/CatalogRow";
+// import CatalogEntry from "@/components/CatalogEntry";
 
 /**
  * Returns an array with arrays of the given size.
@@ -31,19 +39,24 @@ function chunkArray(myArray, chunk_size) {
 
 export default {
   name: "Catalog",
-  properties: [ 'gallery' ],
+  properties: ["gallery"],
   components: {
-    CatalogRow
+    CatalogRow,
+    // CatalogEntry
   },
   computed: {
     entries() {
       let e = chunkArray(this.$store.getters.getAll(this.$attrs.gallery), 4);
       console.log(e);
       return e;
+    },
+    allentries() {
+      return this.$store.getters.getAll(this.$attrs.gallery);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+// style="overflow-y: auto; overflow-x: hidden; max-height: 90vh"
 </style>
