@@ -1,62 +1,66 @@
 <template>
-  <div style=" ">
-   <CatalogRow :key="row.rowid" v-for="row in entries" v-bind:entries="row" /> 
-
-    <!-- <div class="tile is-ancestor">
-    <div class="tile is-parent">-->
-
-      <!-- </div>
-      </div>-->
-   
+  <div>
+    <div class="container py-1 mb-4">
+      <div class="tabs">
+        <ul>
+          <li class="px-2">
+            <a
+              class="has-text-light"
+              v-bind:class="isActive('members')"
+              @click="toggle('members')"
+            >Members</a>
+          </li>
+          <li class="px-2">
+            <a
+              class="has-text-light"
+              v-bind:class="isActive('under 11')"
+              @click="toggle('under 11')"
+            >Junior Under 11</a>
+          </li>
+          <li class="px-3">
+            <a
+              class="has-text-light"
+              v-bind:class="isActive('over 11')"
+              @click="toggle('over 11')"
+            >Junior Over 11</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <Catalog :category="category" />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
- import CatalogRow from "@/components/CatalogRow";
-// import CatalogEntry from "@/components/CatalogEntry";
-
-/**
- * Returns an array with arrays of the given size.
- *
- * @param myArray {Array} array to split
- * @param chunk_size {Integer} Size of every group
- */
-function chunkArray(myArray, chunk_size) {
-  var index = 0;
-  var arrayLength = myArray.length;
-  var tempArray = [];
-  var rowid = 0;
-  for (index = 0; index < arrayLength; index += chunk_size) {
-    let myChunk = myArray.slice(index, index + chunk_size);
-    myChunk.rowid = rowid++;
-    // Do something if you want with the group
-    tempArray.push(myChunk);
-  }
-
-  return tempArray;
-}
-
+import Catalog from "@/components/Catalog";
 export default {
-  name: "Catalog",
-  properties: ["gallery"],
-  components: {
-    CatalogRow,
-    // CatalogEntry
+  name: "MembersCatalog",
+  data() {
+    return {
+      category: ["members"]
+    };
   },
-  computed: {
-    entries() {
-      let e = chunkArray(this.$store.getters.getAll(this.$attrs.gallery), 4);
-      console.log(e);
-      return e;
+  components: { Catalog },
+  methods: {
+    toggle(c) {
+      let i = this.category.indexOf(c);
+      if (i > -1) {
+        this.category.splice(i, 1);
+      } else {
+        this.category.push(c);
+      }
+      if (this.category.length === 0) {
+        this.category.push("members");
+      }
     },
-    allentries() {
-      return this.$store.getters.getAll(this.$attrs.gallery);
+    isActive(c) {
+      return this.category.includes(c) ? "has-background-link" : "";
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
-// style="overflow-y: auto; overflow-x: hidden; max-height: 90vh"
-</style>
+<style lang="scss" scoped></style>

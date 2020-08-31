@@ -1,5 +1,7 @@
 <template>
-  <IntroComp />
+  <div>
+    <IntroComp />
+  </div>
 </template>
 
 <script>

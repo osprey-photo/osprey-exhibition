@@ -1,9 +1,9 @@
 <template>
-  <div id="app">  
+  <div id="app">
     <section class="hero is-fullheight non-has-background">
       <div class="hero-head">
-        <nav class="navbar is-info">
-          <div class="container">
+        <nav class="navbar is-info" v-if="isLive">
+          <div v-if="live" class="container">
             <div class="navbar-brand">
               <span
                 class="navbar-burger burger"
@@ -21,7 +21,7 @@
                 <a
                   class="navbar-item"
                   href="https://bishopswalthamphotosociety.co.uk"
-                >Bishop's Waltham Photographic Society</a>
+                >Visit the BWPS Website</a>
               </div>
             </div>
             <div
@@ -31,10 +31,9 @@
               v-bind:class="{'is-active': showMobileMenu}"
             >
               <div class="navbar-end">
-                <router-link class="navbar-item" to="/">Home</router-link>
+                <router-link class="navbar-item" to="/">Welcome</router-link>
                 <router-link class="navbar-item" to="/Gallery">Gallery</router-link>
-                <router-link class="navbar-item" to="/Junior">Junior</router-link>
-                <router-link class="navbar-item" to="/Panels">Panels</router-link>
+                <router-link class="navbar-item" to="/Junior">Junior Competition</router-link>
                 <router-link class="navbar-item" to="/Catalog">Catalog</router-link>
                 <router-link class="navbar-item" to="/Guestbook">Guestbook</router-link>
               </div>
@@ -42,13 +41,13 @@
           </div>
         </nav>
       </div>
-      <!-- <img
+      <img
         alt="Bishops Waltham Palace"
         v-if="imagebkg"
         class="hero-background is-transparent"
         src="bgd.jpg"
-      /> -->
-      <div >
+      />
+      <div>
         <div class="hero-body py-0">
           <div class="container has-text-centered">
             <transition name="fade" mode="out-in">
@@ -74,7 +73,8 @@ export default {
   data: function() {
     return {
       showMobileMenu: false,
-      imagebkg: false
+      imagebkg: true,
+      live: true
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -86,28 +86,20 @@ export default {
   },
   watch: {
     $route(to) {
-      //this.imagebkg = to.name == "Home";
+      this.imagebkg = to.name == "Home";
       console.log(">>Going to " + JSON.stringify(to));
       // react to route changes...
+    }
+  },
+  computed: {
+    isLive() {
+      return true;//this.$state.store.isLive;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-// .hero-background  {
-//   width: 100%;
-//   // height: 90vh;
-//   background-repeat: no-repeat;
-//   background-position: center center;
-//   background-size: cover;
-//   background-attachment: fixed;
-//   background-image: url("/osprey-exibition/result.png");
-// }
-// #app {
-// background-color: #ffffff;
-// background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%23919191' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
-
 #app {
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -131,7 +123,7 @@ export default {
 }
 
 .hero-body {
- // position: relative;
+  // position: relative;
   // top: "-15px";
 }
 .has-image-centered {
@@ -151,10 +143,8 @@ export default {
   opacity: 0;
 }
 
-body, html {
+body,
+html {
   height: 100%;
 }
-
-
-
 </style>

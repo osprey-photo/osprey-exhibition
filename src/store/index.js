@@ -9,7 +9,9 @@ export default new Vuex.Store({
     imgdata: data.imgdata,
 
     currentEntry: 0,
-    favouriteEntry: []
+    favouriteEntry: [],
+    live: false,
+    showWiners: false
   },
   getters: {
     getAll: state => gallery => {
@@ -18,11 +20,18 @@ export default new Vuex.Store({
         .map(e => {
           return state.imgdata[e];
         })
-        .filter(e => e.categories.includes(gallery));
+        .filter(e => {
+          return e.categories.filter(x => gallery.includes(x)).length > 0;
+          // e.categories.includes(gallery)
+        }
+        );
     },
     isFavourite: state => id => {
       return state.favouriteEntry.includes(id);
-    }
+    },
+    isLive: state => state.live,
+    showWiners: state => state.showWiners
+
   },
   mutations: {
     setCurrent(state, entry) {
@@ -30,6 +39,12 @@ export default new Vuex.Store({
     },
     addFavourite(state, favouriteId) {
       state.favouriteEntry.push(favouriteId);
+    },
+    setLive(state) {
+      state.isLive = true;
+    },
+    showWiners(state) {
+      state.showWiners = true;
     }
   },
   actions: {},

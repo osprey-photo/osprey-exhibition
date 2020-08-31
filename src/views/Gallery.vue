@@ -1,46 +1,28 @@
 <template>
   <div>
     <div v-if="!showGallery && !showModal">
-      <article class="box has-background-link-light">
-        <p class="title">Choose which gallery to look around</p>
-      </article>
-      <div class="tile is-ancestor is-vertical">
-        <div class="tile is-12">
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="title">Guided Tour</p>
-              <div class="content subtitle">All Members' images in a video slideshow</div>Is
-              <button class="button is-large is-link" @click="video_members()">Play...</button>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="title">Self-Guided Tour</p>
-              <div class="content subtitle">You choose when to move on</div>
-              <button class="button is-large is-link" @click="selfGuided()">Enter...</button>
-            </article>
-          </div>
-        </div>
-
-        <div class="tile is-12">
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="title">Junior Competition</p>
-              <div class="content subtitle">All Junior Competition images in a video slideshow</div>
-              <button class="button is-large is-link" @click="video_junior()">Play...</button>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="title">Junior Self-Guided Tour</p>
-              <div class="content subtitle">You choose when to move on</div>
-              <button class="button is-large is-link" @click="junior()">Enter...</button>
-            </article>
+      <div>
+        <div class="tile is-ancestor is-vertical">
+          <div class="tile is-12">
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <p class="title">Guided Tour</p>
+                <div class="content subtitle">All Members' images in a video slideshow</div>
+                <button class="button is-large is-link" @click="video_members()">Play...</button>
+              </article>
+            </div>
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <p class="title">Self-Guided Tour</p>
+                <div class="content subtitle">You choose when to move on</div>
+                <button class="button is-large is-link" @click="selfGuided()">Enter...</button>
+              </article>
+            </div>
           </div>
         </div>
+        <Panels/>
       </div>
     </div>
-    <div v-if="!showGallery" class="tile is-ancestor"></div>
 
     <GalleryComp2
       @hook:beforeDestroy="reset()"
@@ -48,7 +30,12 @@
       v-bind:gallery="gallery"
     />
 
-    <div v-show="showModal" @close="showModal = false"  @hook:beforeDestroy="reset()" class="modal is-active">
+    <div
+      v-show="showModal"
+      @close="showModal = false"
+      @hook:beforeDestroy="reset()"
+      class="modal is-active"
+    >
       <div class="modal-background"></div>
       <div id="videoWrapper" class="modal-content">
         <div class="container">
@@ -66,6 +53,7 @@
 // @ is an alias to /src
 // import GalleryComp3 from "@/components/GalleryComp3";
 import GalleryComp2 from "@/components/GalleryComp2";
+import Panels from "@/views/Panels";
 import { vueVimeoPlayer } from "vue-vimeo-player";
 export default {
   name: "Gallery",
@@ -81,7 +69,8 @@ export default {
   components: {
     // GalleryComp3,
     GalleryComp2,
-    vueVimeoPlayer
+    vueVimeoPlayer,
+    Panels
   },
   mounted() {
     this.$photoswipe.listen("close", this.reset);

@@ -1,8 +1,10 @@
 /* Custom Fonts */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Libre+Baskerville');
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
 
-/* Custom Variables and Functions*/
-//@import 'variables';
 
-/* Uncomment to import the entire Bulma framework */
-@import '~bulma/bulma';
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
