@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     entries: data.entries,
     imgdata: data.imgdata,
-
+    categories: data.categories,
     currentEntry: 0,
     favouriteEntry: [],
     live: false,
@@ -15,7 +15,8 @@ export default new Vuex.Store({
   },
   getters: {
     getAll: state => gallery => {
-      console.log("Vuex getting gallery" + gallery);
+      console.log("Vuex getting gallery " + gallery);
+      console.log(state.categories)
       return state.entries
         .map(e => {
           return state.imgdata[e];
@@ -26,6 +27,10 @@ export default new Vuex.Store({
         }
         );
     },
+    getCategoryInfo: state => category => {
+      return state.categories[category];
+    },
+    getCategories: state => state.categories,
     isFavourite: state => id => {
       return state.favouriteEntry.includes(id);
     },

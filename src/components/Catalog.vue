@@ -1,5 +1,5 @@
 <template>
-  <div style=" ">
+  <div class="tile is-ancestor is-vertical">
     <CatalogRow :key="row.rowid" v-for="row in entries" v-bind:entries="row" />
   </div>
 </template>

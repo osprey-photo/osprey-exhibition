@@ -1,6 +1,6 @@
 <template>
-  <div class="columns">
-    <div :key="entry.id" v-for="entry in entries" class="column is-3">
+  <div class="tile">
+    <div :key="entry.id" v-for="entry in entries" class="tile is-parent">
       <CatalogEntry
         v-bind:title="entry.title"
         v-bind:thumbnail="entry.thumbnail"
@@ -9,6 +9,7 @@
         v-bind:large="entry.large"
         v-bind:entryid="entry.id"
         v-bind:exif="entry.exif"
+        v-bind:position="entry.position"
       ></CatalogEntry>
     </div>
   </div>

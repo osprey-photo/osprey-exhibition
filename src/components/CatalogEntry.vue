@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="is-transparent">
-      <div class="card is-transparent" >
+    <div class="tile is-child">
+      <div class="card is-offset">
         <div class="card-image">
           <figure class="imgage is-square">
-            <div class="ribbon ribbon-top-right"><span class="corner-ribbon blue">HC</span></div>
-            <img v-bind:src="thumbnail" alt="Placeholder image" class="pt-2" />
+            <div v-if="tag.show" class="ribbon ribbon-top-right">
+              <span class="corner-ribbon" :class="tag.colour">{{tag.text}}</span>
+            </div>
+            <img v-bind:src="thumbnail" alt="Placeholder image" class="pt-2 is-128by128" />
           </figure>
         </div>
         <div class="card-content">
@@ -66,9 +68,26 @@
 
 <script>
 import Spinner from "vue-simple-spinner";
+
+const colourMap = {
+  "1st": "red",
+  "2nd": "green",
+  "3rd": "blue",
+  HC: "yellow"
+};
+
 export default {
   name: "CatalogEntry",
-  props: ["entryid", "thumbnail", "author", "title", "notes", "large", "exif"],
+  props: [
+    "entryid",
+    "thumbnail",
+    "author",
+    "title",
+    "notes",
+    "large",
+    "exif",
+    "position"
+  ],
   components: { Spinner },
   data() {
     return {
@@ -80,6 +99,17 @@ export default {
   computed: {
     isFavourite() {
       return this.$store.getters.isFavourite(this.entryid);
+    },
+    tag() {
+      if (this.$props.position) {
+        return {
+          show: true,
+          text: this.$props.position,
+          colour: colourMap[this.$props.position]
+        };
+      } else {
+        return { show: false };
+      }
     }
   },
   methods: {
@@ -106,18 +136,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.t-img {
-  width: 200;
-  height: 200;
-}
-.card {
-    display:flex;
-    flex-direction: column;
-}
-.cart-footer {
-    margin-top: auto;
-}
-
 /* https://codepen.io/nxworld/pen/oLdoWb */
 .ribbon {
   width: 150px;
@@ -129,7 +147,7 @@ export default {
 .ribbon::after {
   position: absolute;
   z-index: -1;
-  content: '';
+  content: "";
   display: block;
   border: 5px solid #2980b9;
 }
@@ -139,10 +157,10 @@ export default {
   width: 225px;
   padding: 15px 0;
   background-color: #3498db;
-  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   color: #fff;
-  font: 700 18px/1 'Lato', sans-serif;
-  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  font: 700 18px/1 "Lato", sans-serif;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
   text-align: center;
 }
@@ -244,15 +262,39 @@ export default {
 }
 
 /* Colors */
-.corner-ribbon.transparent{background: none; color: #555;}
-.corner-ribbon.white{background: #f0f0f0; color: #555;}
-.corner-ribbon.black{background: #333;}
-.corner-ribbon.grey{background: #999;}
-.corner-ribbon.blue{background: #39d;}
-.corner-ribbon.green{background: #2c7;}
-.corner-ribbon.turquoise{background: #1b9;}
-.corner-ribbon.purple{background: #95b;}
-.corner-ribbon.red{background: #e43;}
-.corner-ribbon.orange{background: #e82;}
-.corner-ribbon.yellow{background: #ec0;}
+.corner-ribbon.transparent {
+  background: none;
+  color: #555;
+}
+.corner-ribbon.white {
+  background: #f0f0f0;
+  color: #555;
+}
+.corner-ribbon.black {
+  background: #333;
+}
+.corner-ribbon.grey {
+  background: #999;
+}
+.corner-ribbon.blue {
+  background: #39d;
+}
+.corner-ribbon.green {
+  background: #2c7;
+}
+.corner-ribbon.turquoise {
+  background: #1b9;
+}
+.corner-ribbon.purple {
+  background: #95b;
+}
+.corner-ribbon.red {
+  background: #e43;
+}
+.corner-ribbon.orange {
+  background: #e82;
+}
+.corner-ribbon.yellow {
+  background: #ec0;
+}
 </style>

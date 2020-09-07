@@ -26,8 +26,8 @@ const routes = [
     component: Gallery
   },
   {
-    path: "/catalog",
-    name: "Catalog",
+    path: "/catalogue",
+    name: "Catalogue",
     component: Catalog
   },
   {

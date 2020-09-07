@@ -1,8 +1,9 @@
 /* Custom Fonts */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Libre+Baskerville');
 // Import Bulma's core
-@import "~bulma/sass/utilities/_all";
+// @import "~bulma/sass/utilities/_all";
 
+$family-sans-serif: 'Ubuntu', Tahoma, Arial;
 
 // Import Bulma and Buefy styles
 @import "~bulma";

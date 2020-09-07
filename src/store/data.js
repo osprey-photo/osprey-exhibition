@@ -1,5 +1,5 @@
-import { entries, imgdata } from "../assets/data.json";
+import { entries, imgdata, categories } from "../assets/data.json";
 
-const data = {entries,imgdata};
-export default data ;
+const data = { entries, imgdata, categories };
+export default data;
 

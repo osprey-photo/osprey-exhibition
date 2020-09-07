@@ -21,6 +21,7 @@
     "vue-photoswipe.js": "^2.0.23",
     "vue-router": "^3.4.3",
     "vue-simple-spinner": "^1.2.10",
+    "vue-video": "^0.1.7",
     "vue-video-hero": "^2.0.2",
     "vue-vimeo-player": "^0.1.0",
     "vuejs-panorama": "^1.1.9",

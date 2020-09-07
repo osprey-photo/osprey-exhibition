@@ -2,40 +2,15 @@
   <div class="tile is-ancestor">
     <div class="tile is-vertical">
       <div class="tile">
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="title">Close-up</p>
-            <p class="subtitle">Matthew White</p>
-            <figure class="image is-200by200" @click="panels('Close-up-selected')">
-              <img src="gallery/seKsAT8gCZD_tb.png" />
-            </figure>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="title">Square Images</p>
-            <p class="subtitle">Matthew White</p>
-            <figure class="image is-200by200" @click="panels('Square Images')">
-              <img src="gallery/Rl28d5Pz0hb_tb.png" />
-            </figure>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="title">Lockdown Makes</p>
-            <p class="subtitle">Matthew White</p>
-            <figure class="image is-200by200" @click="panels('lockdown-makes')">
-              <img src="gallery/-Cc6cCvkfzy_tb.png" />
-            </figure>
-          </article>
-        </div>
-                <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="title">Flowers</p>
-            <p class="subtitle">Matthew White</p>
-            <figure class="image is-200by200" @click="panels('flowers')">
-              <img src="gallery/-Cc6cCvkfzy_tb.png" />
-            </figure>
+        <div :key="index" v-for="(value, name, index) in getpanels" class="tile is-parent">
+          <article class="tile is-child notification" @click="panels(name)">
+            <p class="title">{{value.title}}</p>
+            <p class="subtitle">{{value.author}}</p>
+            <a>
+              <figure class="image is-200by200">
+                <img :src="value.thumbnail" />
+              </figure>
+            </a>
           </article>
         </div>
       </div>
@@ -49,9 +24,14 @@
 export default {
   name: "Panels",
   components: {},
+  computed: {
+    getpanels() {
+      return this.$store.getters.getCategories;
+    }
+  },
   methods: {
-    panels(category){
-      this.$router.push({ name: 'Panels', params: { category } })
+    panels(category) {
+      this.$router.push({ name: "Panels", params: { category } });
     }
   }
 };

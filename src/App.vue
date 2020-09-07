@@ -3,7 +3,7 @@
     <section class="hero is-fullheight non-has-background">
       <div class="hero-head">
         <nav class="navbar is-info" v-if="isLive">
-          <div v-if="live" class="container">
+          <div v-if="isLive" class="container">
             <div class="navbar-brand">
               <span
                 class="navbar-burger burger"
@@ -15,6 +15,9 @@
                 <span></span>
                 <span></span>
               </span>
+              <div class="navbar-item" href="https://bishopswalthamphotosociety.co.uk">
+                <img class="image is-128by128" src="BWPSLogo2016.png"  />
+              </div>
             </div>
             <div class="navbar-menu">
               <div class="navbar-start">
@@ -34,8 +37,8 @@
                 <router-link class="navbar-item" to="/">Welcome</router-link>
                 <router-link class="navbar-item" to="/Gallery">Gallery</router-link>
                 <router-link class="navbar-item" to="/Junior">Junior Competition</router-link>
-                <router-link class="navbar-item" to="/Catalog">Catalog</router-link>
-                <router-link class="navbar-item" to="/Guestbook">Guestbook</router-link>
+                <router-link class="navbar-item" to="/Catalogue">Catalogue</router-link>
+                <router-link class="navbar-item" to="/Guestbook">Guest Book</router-link>
               </div>
             </div>
           </div>
@@ -73,8 +76,7 @@ export default {
   data: function() {
     return {
       showMobileMenu: false,
-      imagebkg: true,
-      live: true
+      imagebkg: true
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -93,7 +95,7 @@ export default {
   },
   computed: {
     isLive() {
-      return true;//this.$state.store.isLive;
+      return true; //this.$store.getters.isLive;
     }
   }
 };

@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-        <Panels/>
+        <Panels />
       </div>
     </div>
 
@@ -40,21 +40,23 @@
       <div id="videoWrapper" class="modal-content">
         <div class="container">
           <div class="videoWrapper">
-            <vueVimeoPlayer ref="player" :video-id="videoID" :autoplay="true" />
+            <my-video ref="video" :sources="video.sources" :options="video.options"></my-video>
           </div>
         </div>
       </div>
-      <button class="modal-close" @click="showModal = false"></button>
+      <button class="modal-close" @click="reset()"></button>
     </div>
   </div>
 </template>
 
 <script>
+import myVideo from "vue-video";
+
 // @ is an alias to /src
 // import GalleryComp3 from "@/components/GalleryComp3";
 import GalleryComp2 from "@/components/GalleryComp2";
 import Panels from "@/views/Panels";
-import { vueVimeoPlayer } from "vue-vimeo-player";
+// import { vueVimeoPlayer } from "vue-vimeo-player";
 export default {
   name: "Gallery",
   data() {
@@ -63,14 +65,29 @@ export default {
       showGallery: false,
       gallery: "",
       autoplay: false,
-      showModal: false
+      showModal: false,
+      video: {
+        sources: [
+          {
+            src:
+              "https://www.dropbox.com/s/83ks5lom1lkeiie/Bishop%27s%20Waltham%20Photographic%20Society%20-%20Exhibition%202019.mp4?raw=1",
+            type: "video/mp4"
+          }
+        ],
+        options: {
+          autoplay: false,
+          volume: 0.0
+          // poster: 'http://covteam.u.qiniudn.com/poster.png'
+        }
+      }
     };
   },
   components: {
     // GalleryComp3,
     GalleryComp2,
-    vueVimeoPlayer,
-    Panels
+    // vueVimeoPlayer,
+    Panels,
+    myVideo
   },
   mounted() {
     this.$photoswipe.listen("close", this.reset);
@@ -93,13 +110,16 @@ export default {
     reset() {
       this.showGallery = false;
       this.showModal = false;
+      if (this.$refs.video) {
+        this.$refs.video.play();
+      }
     },
     video_junior() {
       this.videoID = "372182220";
       this.showModal = true;
     },
     video_members() {
-      this.videoID = "382890997";
+      this.$refs.video.play();
       this.showModal = true;
     }
   },

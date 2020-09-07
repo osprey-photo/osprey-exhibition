@@ -13,6 +13,7 @@ export default {
   methods: {
     setLive() {
       this.$store.comit("setLive");
+      this.$router.push({name:"Home"});
     }
   }
 };
