@@ -16,7 +16,7 @@
                 <span></span>
               </span>
               <div class="navbar-item" href="https://bishopswalthamphotosociety.co.uk">
-                <img class="image is-128by128" src="BWPSLogo2016.png"  />
+                <img class="image is-128by128" src="logo-img-only-transparent.png"  />
               </div>
             </div>
             <div class="navbar-menu">

@@ -2,12 +2,36 @@
   <div>
     <div class="tile is-ancestor is-vertical">
       <div class="tile is-parent">
-        <div class="is-child tile">
-          <p
-            class="is-size-3-mobile is-size-1-tablet has-text-light"
-          >Bishop's Waltham Photographic Society</p>
-          <p class="is-size-3-mobile is-size-1-tablet has-text-light">Exhibition 2020</p>
+        <div class="tile is-child">
+          <div class="container">
+            <article class="columns">
+              <figure class="column ">
+                <p class="image is-128x128 has-image-centered" >
+                  <img src="BWPSLogo2016.png" />
+                </p>
+              </figure>
+              <div class="column">
+                <div class="has-text-left-tablet">
+                    <p
+                      class="is-size-5-mobile is-size-4-tablet has-text-grey-lighter"
+                    >Bishop's Waltham Photographic Society</p> 
+                   <p class="is-size-3-mobile is-size-1-tablet has-text-light has-text-weight-semibold">Exhibition 2020</p>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
+        <!-- <div class="is-child tile">
+          <div class="container ">
+               <img src="BWPSLogo2016.png" class="has-image-centered image is-128x128"/>
+          </div>
+        </div>
+                <div class="is-child tile">
+          <p
+            class="is-size-4-mobile is-size-2-tablet has-text-light"
+          >Bishop's Waltham Photographic Society</p>
+          <p class="is-size-4-mobile is-size-2-tablet has-text-light">Exhibition 2020</p>
+        </div>-->
       </div>
 
       <div class="tile is-parent">
@@ -38,13 +62,22 @@
                 </div>
               </div>
             </div>
-            <p
-              class="py-1"
-            >We have an award for the exhibition picture that wins the public vote and should be grateful if you would vote for your favourite image via the voting link on the   <router-link to="/Catalogue">catalogue page.</router-link>
-              </p>
-            <p class="py-1">Please use our <router-link to="/Guestbook">Guest Book</router-link> to leave any comments about the exhibition.</p>
             <p class="py-1">
-              Information about the Society can be found <a href="https://bishopswalthamphotosociety.co.uk/">here</a> and membership enquiries can be made <a href="https://bishopswalthamphotosociety.co.uk/sample-page/joining-the-society/">here</a>. As we are unable to meet in person we are continuing to meet on a regular basis via Zoom where we are conducting our planned programme with additional speakers as they become available.
+              We have an award for the exhibition picture that wins the public vote and should be grateful if you would vote for your favourite image via the voting link on the
+              <router-link to="/Catalogue">catalogue page.</router-link>
+            </p>
+            <p class="py-1">
+              Please use our
+              <router-link to="/Guestbook">Guest Book</router-link>to leave any comments about the exhibition.
+            </p>
+            <p class="py-1">
+              Information about the Society can be found
+              <a
+                href="https://bishopswalthamphotosociety.co.uk/"
+              >here</a> and membership enquiries can be made
+              <a
+                href="https://bishopswalthamphotosociety.co.uk/sample-page/joining-the-society/"
+              >here</a>. As we are unable to meet in person we are continuing to meet on a regular basis via Zoom where we are conducting our planned programme with additional speakers as they become available.
             </p>
           </div>
         </div>
