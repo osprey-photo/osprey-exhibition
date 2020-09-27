@@ -1,40 +1,42 @@
 <template>
   <div>
     <div v-if="!showGallery && !showModal" class="container">
-      <div class="tile is-ancestor">
-        <div class="tile is-6">
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="title">Guided Tour</p>
-              <div class="content subtitle">Junior Competition video slideshow</div>
-              <button class="button is-large is-link">Play...</button>
-            </article>
+      <div class="box has-background-grey-lighter">
+        <div class="tile is-ancestor">
+          <div class="tile is-6">
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <p class="title">Guided Tour</p>
+                <div class="content subtitle">Junior Competition video slideshow</div>
+                <button class="button is-large is-link">Play...</button>
+              </article>
+            </div>
+          </div>
+          <div class="tile is-6">
+            <div class="tile is-parent">
+              <article class="tile has-background-grey-lighter is-child notification">
+                <p class="title">About the competition</p>
+                <p>Each year we invite local children as well as our Junior Section to enter a competition. We've seen some stunning work, from the next generation of photgraphers!</p>
+              </article>
+            </div>
           </div>
         </div>
-        <div class="tile is-6">
-          <div class="tile is-parent">
-            <article class="tile is-child notification">
-              <p class="title">About the competition</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci cupiditate, eaque odit inventore ab fuga nam a, sequi fugit nemo illum placeat tempore quaerat cumque minus repellat totam consequuntur nobis.</p>
-            </article>
-          </div>
-        </div>
-      </div>
 
-      <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <article class="tile is-child notification mx-2">
-            <p class="title">Under 11s Self Guided Slideshow</p>
-            <div class="content subtitle">You choose when to move on</div>
-            <button class="button is-large is-link">Enter...</button>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification mx-2">
-            <p class="title">Over 11s Self Guided Slideshow</p>
-            <div class="content subtitle">You choose when to move on</div>
-            <button class="button is-large is-link">Enter...</button>
-          </article>
+        <div class="tile is-ancestor">
+          <div class="tile is-parent">
+            <article class="tile is-child notification mx-2">
+              <p class="title">Up to 11s Self Guided Slideshow</p>
+              <div class="content subtitle">You choose when to move on</div>
+              <button class="button is-large is-link">Enter...</button>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification mx-2">
+              <p class="title">12-16 Self Guided Slideshow</p>
+              <div class="content subtitle">You choose when to move on</div>
+              <button class="button is-large is-link">Enter...</button>
+            </article>
+          </div>
         </div>
       </div>
     </div>

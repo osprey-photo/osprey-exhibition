@@ -1,26 +1,35 @@
 <template>
   <div>
     <div v-if="!showGallery && !showModal">
-      <div>
-        <div class="tile is-ancestor is-vertical">
-          <div class="tile is-12">
-            <div class="tile is-parent">
-              <article class="tile is-child notification">
-                <p class="title">Guided Tour</p>
-                <div class="content subtitle">All Members' images in a video slideshow</div>
-                <button class="button is-large is-link" @click="video_members()">Play...</button>
+      <div class>
+        <div class="box has-background-grey-lighter">
+          <div class="tile is-ancestor is-vertical">
+            <div class="tile">
+              <article class="tile is-child notification has-background-grey-lighter">
+                <p class="title">Main Gallery</p>
               </article>
             </div>
-            <div class="tile is-parent">
-              <article class="tile is-child notification">
-                <p class="title">Self-Guided Tour</p>
-                <div class="content subtitle">You choose when to move on</div>
-                <button class="button is-large is-link" @click="selfGuided()">Enter...</button>
-              </article>
+            <div class="tile is-12">
+              <div class="tile is-parent">
+                <article class="tile is-child notification">
+                  <p class="title">Guided Tour</p>
+                  <div class="content subtitle">All Members' images in a video slideshow</div>
+                  <button class="button is-large is-link" @click="video_members()">Play...</button>
+                </article>
+              </div>
+              <div class="tile is-parent">
+                <article class="tile is-child notification">
+                  <p class="title">Self-Guided Tour</p>
+                  <div class="content subtitle">You choose when to move on</div>
+                  <button class="button is-large is-link" @click="selfGuided()">Enter...</button>
+                </article>
+              </div>
             </div>
           </div>
         </div>
-        <Panels />
+        <div class>
+          <Panels />
+        </div>
       </div>
     </div>
 

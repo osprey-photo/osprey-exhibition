@@ -3,12 +3,14 @@
     <div class="box" v-if="!showGallery">
       <div class="level">
         <div class="level-item">
-          <span class="title">{{title}}</span>
+          <span class="title">{{ title }}</span>
           <span class="is-size-4 is-italic px-5">by</span>
-          <span class="title">{{author}}</span>
+          <span class="title">{{ author }}</span>
         </div>
         <div class="level-item">
-          <button class="button is-outline" @click="showModal = true">More information</button>
+          <button class="button is-outline" @click="showModal = true">
+            More information
+          </button>
         </div>
       </div>
     </div>
@@ -20,13 +22,17 @@
               <div class="card is-shadowless has-transparent-background">
                 <div class="card-image">
                   <figure class="image is-200by200" @click="galleryUp()">
-                    <img v-if="chunk_size>3" :src="entry.thumbnail" alt="Placeholder image" />
+                    <img
+                      v-if="chunk_size > 3"
+                      :src="entry.thumbnail"
+                      alt="Placeholder image"
+                    />
                     <img v-else :src="entry.large" alt="Placeholder image" />
                   </figure>
                 </div>
                 <div class="card-content">
                   <div class="content">
-                    <div class="has-text-white">{{entry.title}}</div>
+                    <div class="has-text-white">{{ entry.title }}</div>
                   </div>
                 </div>
               </div>
@@ -35,7 +41,11 @@
         </div>
       </div>
     </div>
-    <GalleryComp2 @hook:beforeDestroy="reset()" v-if="showGallery" v-bind:gallery="gallery" />
+    <GalleryComp2
+      @hook:beforeDestroy="reset()"
+      v-if="showGallery"
+      v-bind:gallery="gallery"
+    />
     <div>
       <b-modal v-model="showModal" class="modal is-active">
         <div class="modal-background"></div>
@@ -43,9 +53,9 @@
           <div class="box">
             <div class="columns">
               <div class="column">
-                <p class="title">{{title}}</p>
-                <p class="subtitle">{{author}}</p>
-                <p class>{{description}}</p>
+                <p class="title">{{ title }}</p>
+                <p class="subtitle">{{ author }}</p>
+                <p class>{{ description }}</p>
               </div>
             </div>
           </div>

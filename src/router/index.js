@@ -4,9 +4,11 @@ import Home from "../views/Home.vue";
 import Beta from "../views/Beta.vue";
 import Gallery from "../views/Gallery.vue";
 import Junior from "../views/Junior.vue";
-import Catalog from "../views/Catalog.vue";
+// import Catalog from "../views/Catalog.vue";
+import Catalog2 from "../views/Catalog2.vue";
 import Guestbook from "../components/Guestbook.vue";
-import TiledGallery from "../components/TiledGallery.vue"
+import TiledGallery from "../components/TiledGallery.vue";
+import VotingResults from "../views/votingresults.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,7 +30,12 @@ const routes = [
   {
     path: "/catalogue",
     name: "Catalogue",
-    component: Catalog
+    component: Catalog2
+  },
+  {
+    path: "/cat2",
+    name: "Cat2",
+    component: Catalog2
   },
   {
     path: "/junior",
@@ -40,6 +47,10 @@ const routes = [
     path: "/guestbook",
     name: "Guestbook",
     component: Guestbook
+  },  {
+    path: "/vr",
+    name: "votingresults",
+    component: VotingResults
   },
   { path: '/panels/:category', name:'Panels', component: TiledGallery }
 ];

@@ -8,21 +8,32 @@
               class="has-text-light"
               v-bind:class="isActive('members')"
               @click="toggle('members')"
-            >Members</a>
+              >Members</a
+            >
           </li>
           <li class="px-2">
             <a
               class="has-text-light"
               v-bind:class="isActive('under 11')"
               @click="toggle('under 11')"
-            >Junior Under 11</a>
+              >Junior Up 11</a
+            >
           </li>
           <li class="px-3">
             <a
               class="has-text-light"
               v-bind:class="isActive('over 11')"
               @click="toggle('over 11')"
-            >Junior Over 11</a>
+              >Junior 12-16</a
+            >
+          </li>
+          <li class="px-3">
+            <a
+              class="has-text-light"
+              v-bind:class="isActive('panels')"
+              @click="toggle('panels')"
+              >Panels</a
+            >
           </li>
         </ul>
       </div>

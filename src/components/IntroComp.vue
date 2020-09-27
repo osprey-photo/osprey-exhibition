@@ -35,7 +35,7 @@
       </div>
 
       <div class="tile is-parent">
-        <div class="box is-child tile has-background-link-light">
+        <div class="box is-child tile has-background-grey-lighter">
           <div class="is-size-6-mobile is-size-5-tablet has-text-justified">
             <p class="py-1">
               <span

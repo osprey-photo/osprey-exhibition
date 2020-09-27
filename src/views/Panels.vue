@@ -1,7 +1,12 @@
 <template>
-  <div class="tile is-ancestor">
-    <div class="tile is-vertical">
+  <div class="box has-background-grey-lighter">
+    <div class="tile is-ancestor is-vertical">
       <div class="tile">
+        <article class="tile is-child notification has-background-grey-lighter">
+          <p class="title">Individual Panels</p>
+        </article>
+      </div>
+      <div class="tile is-12">
         <div :key="index" v-for="(value, name, index) in getpanels" class="tile is-parent">
           <article class="tile is-child notification" @click="panels(name)">
             <p class="title">{{value.title}}</p>

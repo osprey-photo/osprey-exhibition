@@ -38,7 +38,7 @@ export default {
   computed: {
     entries() {
       let e = chunkArray(this.$store.getters.getAll(this.$attrs.category), 4);
-      console.log(this.$attrs.category);
+      console.log(e);
       return e;
     },
     allentries() {

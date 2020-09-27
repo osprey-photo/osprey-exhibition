@@ -1,13 +1,16 @@
 <template>
   <div>
-    <div class="tile is-child">
-      <div class="card is-offset">
-        <div class="card-image">
-          <figure class="imgage is-square">
+    <div class="tile is-child catalogentry">
+      <div class="card is-offset has-background-white-ter">
+        <div class="card-image px-5 py-5">
+          <figure class="image is-square">
             <div v-if="tag.show" class="ribbon ribbon-top-right">
               <span class="corner-ribbon" :class="tag.colour">{{tag.text}}</span>
             </div>
-            <img v-bind:src="thumbnail" alt="Placeholder image" class="pt-2 is-128by128" />
+            <div class="image-container">
+              <img v-bind:src="thumbnail" alt class="img-blur" aria-hidden="true" />
+              <img v-bind:src="thumbnail" alt="Placeholder image" class="pt-2 is-128by128" />
+            </div>
           </figure>
         </div>
         <div class="card-content">
@@ -19,18 +22,17 @@
           </div>
         </div>
         <footer class="card-footer">
-          <div v-if="isError">..errr try again later..</div>
-          <div v-else-if="isVoting">
-            <spinner class="card-footer-item"></spinner>
-          </div>
-
-          <div v-else>
-            <div v-if="isFavourite">Favourite !</div>
-            <div v-else>
-              <a href="#" @click="vote()" class="card-footer-item">Vote as Favourite</a>
-            </div>
-          </div>
-          <a href="#" @click="showModal = true" class="card-footer-item">More Information</a>
+          <span class="card-footer-item">
+            <b-button
+              v-bind:class="{'is-loading': isVoting}"
+              @click="vote()" :disabled="isFavourite"
+               >
+              Vote as Favourite
+            </b-button>
+          </span>
+          <span class="card-footer-item">
+            <a href="#" @click="showModal = true" class="button">More Information</a>
+          </span>
         </footer>
       </div>
     </div>
@@ -43,7 +45,9 @@
             <div class="columns">
               <div class="column">
                 <figure class="image">
-                  <img v-bind:src="large" alt="Placeholder image" />
+                  <div class="image-container">
+                    <img v-bind:src="large" alt="Placeholder image" />
+                  </div>
                 </figure>
               </div>
               <div class="column">
@@ -67,7 +71,7 @@
 </template>
 
 <script>
-import Spinner from "vue-simple-spinner";
+// import Spinner f?rom "vue-simple-spinner";
 
 const colourMap = {
   "1st": "red",
@@ -88,7 +92,7 @@ export default {
     "exif",
     "position"
   ],
-  components: { Spinner },
+  components: {},
   data() {
     return {
       showModal: false,
@@ -119,7 +123,9 @@ export default {
         const { data } = await this.$http.post(
           "https://8d06c43d.eu-gb.apiconnect.appdomain.cloud/api/vote",
           {
-            entryid: this.entryid
+            entryid: this.entryid,
+            author: this.author,
+            title: this.title
           }
         );
         this.$store.commit("addFavourite", this.entryid);
@@ -136,6 +142,10 @@ export default {
 
 
 <style lang="scss" scoped>
+.catalogentry {
+  // width: 100%;
+}
+
 /* https://codepen.io/nxworld/pen/oLdoWb */
 .ribbon {
   width: 150px;
@@ -296,5 +306,43 @@ export default {
 }
 .corner-ribbon.yellow {
   background: #ec0;
+}
+
+// The image containers
+.img-container {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: grid;
+  place-items: center;
+}
+
+// Add a pseudo element to keep the aspect ratio
+.img-container::after {
+  content: "";
+  display: block;
+  padding-bottom: calc(900% / 16); // Define ratio here
+}
+
+// Stretch the images over the container and keep them contained
+.img-container > * {
+  position: absolute;
+  top: var(--offset, 0);
+  left: var(--offset, 0);
+  width: calc(100% - 2 * var(--offset, 0px));
+  height: calc(100% - 2 * var(--offset, 0px));
+  object-fit: contain;
+}
+
+// Blur the background image and cover the whole container
+// Use the negative blur value as offset to prevent the blur
+// from mixing with the document background color
+.img-blur {
+  --blur: 20px;
+  --offset: calc(-1 * var(--blur));
+  object-fit: cover;
+  filter: blur(var(--blur)) grayscale(1);
 }
 </style>
