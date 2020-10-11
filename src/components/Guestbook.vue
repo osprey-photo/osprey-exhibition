@@ -71,9 +71,6 @@
             Submit
           </button>
         </div>
-        <div class="control">
-          <button class="button is-link is-light">Cancel</button>
-        </div>
       </div>
       <b-notification
         type="is-info"
@@ -103,18 +100,18 @@ export default {
       email: "",
       isSubmitting: false,
       isThanks: false,
-      isEmpty:false,
+      isEmpty: false
     };
   },
   methods: {
     async guestbook() {
       try {
         this.isSubmitting = true;
-        if (this.comment.trim()===''){
-          this.isEmpty=true;
+        if (this.comment.trim() === "") {
+          this.isEmpty = true;
           return;
         } else {
-          this.isEmpty=false;
+          this.isEmpty = false;
         }
         const { data } = await this.$http.post(
           "https://8d06c43d.eu-gb.apiconnect.appdomain.cloud/api/comment",

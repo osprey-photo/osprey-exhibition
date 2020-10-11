@@ -7,27 +7,30 @@
 <script>
 export default {
   name: "GalleryComp2",
-  properties: ["autoplay","gallery"],
+  properties: ["autoplay", "gallery"],
   components: {},
   data() {
     return {};
   },
   computed: {},
   mounted() {
-    console.log(this)
-    const items = this.$store.getters.getAll(this.$attrs.gallery).map(e => {
-      console.log(e)
-      return {
-        src: e.large,
-        w: e.size.width,
-        h: e.size.height,
-        title: e.title,
-        author: e.author
-      };
-    });
+    console.log(this);
+    const items = this.$store.getters
+      .getAll(this.$attrs.gallery)
+      .map(e => {
+        console.log(e);
+        return {
+          src: e.large,
+          w: e.size.width,
+          h: e.size.height,
+          title: e.title,
+          author: e.author
+        };
+      })
+      .sort(() => 0.5 - Math.random());
     this.$photoswipe.open(items, {
       showShare: false,
-      shareEl:false,
+      shareEl: false,
       bgOpacity: 0.7,
       showHideOpacity: true,
       showAnimationDuration: 0,
@@ -42,7 +45,7 @@ export default {
           captionEl.children[0].innerHTML = "hello";
           return false;
         }
-        captionEl.children[0].style.textAlign="center";
+        captionEl.children[0].style.textAlign = "center";
         captionEl.children[0].innerHTML = `<span class="subtitle has-text-white">"${item.title}"</span><span class="subtitle">&nbsp;&nbsp;|&nbsp;&nbsp;</span> <span class="subtitle has-text-white">${item.author}</p>`;
         return true;
       }
@@ -52,10 +55,13 @@ export default {
   },
   destroy() {
     this.$photoswipe.close();
-    console.log('beforeDestroy')
+    console.log("beforeDestroy");
   },
   methods: {
     beforeChange(...args) {
+      this.$photoswipe.close();
+      console.log(this.$parent.reset);
+      this.$parent.reset();
       console.log("beforeChange", ...args); // eslint-disable-line
     },
     show() {}
@@ -73,5 +79,4 @@ export default {
 .pswp__caption__center {
   text-align: center;
 }
-
 </style>

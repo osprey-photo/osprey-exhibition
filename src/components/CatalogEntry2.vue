@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class=" catalogentry">
+    <div class="catalogentry">
       <div class="card has-background-light">
         <div class="card-image px-2 py-2 ">
           <figure class="image is-200by200">
@@ -13,7 +13,7 @@
             <img
               v-bind:src="thumbnail"
               alt="Placeholder image"
-              class="pt-2 is-128by128"
+              class="pt-2 "
             />
           </figure>
         </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="card-footer">
           <div class="card-footer-item  ">
-            <a
+            <a v-if="isMembers()"
               class="button"
               @click="vote()"
               v-bind:class="{
@@ -45,22 +45,6 @@
             </a>
           </div>
         </div>
-        <!-- <div class="card-footer">
-          <span class="card-footer-item">
-            <b-button
-              v-bind:class="{ 'is-loading': isVoting }"
-              @click="vote()"
-              :disabled="isFavourite"
-            >
-              Vote as Favourite
-            </b-button>
-          </span>
-          <span class="card-footer-item">
-            <a href="#" @click="showModal = true" class="button"
-              >More Information</a
-            >
-          </span>
-        </div> -->
       </div>
     </div>
 
@@ -102,8 +86,6 @@
 </template>
 
 <script>
-// import Spinner f?rom "vue-simple-spinner";
-
 const colourMap = {
   "1st": "red",
   "2nd": "green",
@@ -121,7 +103,8 @@ export default {
     "notes",
     "large",
     "exif",
-    "position"
+    "position",
+    "categories"
   ],
   components: {},
   data() {
@@ -148,6 +131,10 @@ export default {
     }
   },
   methods: {
+    isMembers () {
+      console.log(this.categories+' ..... '+this.categories.includes('members'))
+      return this.categories.includes('members')
+    },
     async vote() {
       if (this.isFavourite) return;
       try {
@@ -174,6 +161,11 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.catalogentry {
+
+}
+
 /* https://codepen.io/nxworld/pen/oLdoWb */
 .ribbon {
   width: 150px;

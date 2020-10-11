@@ -14,6 +14,7 @@
                 v-bind:entryid="entry.id"
                 v-bind:exif="entry.exif"
                 v-bind:position="entry.position"
+                v-bind:categories="entry.categories"
               ></CatalogEntry2>
             </div>
           </div>

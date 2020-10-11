@@ -1,6 +1,9 @@
+//  Copyright Matthew B White 2020 All Rights Reserved.
+//  SPDX-License-Identifier: Apache-2.0
+
 import Vue from "vue";
 import Vuex from "vuex";
-import data from './data.js';
+import data from "./data.js";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -16,7 +19,7 @@ export default new Vuex.Store({
   getters: {
     getAll: state => gallery => {
       console.log("Vuex getting gallery " + gallery);
-      console.log(state.categories)
+      console.log(state.categories);
       return state.entries
         .map(e => {
           return state.imgdata[e];
@@ -24,8 +27,7 @@ export default new Vuex.Store({
         .filter(e => {
           return e.categories.filter(x => gallery.includes(x)).length > 0;
           // e.categories.includes(gallery)
-        }
-        );
+        });
     },
     getCategoryInfo: state => category => {
       return state.categories[category];
@@ -36,7 +38,6 @@ export default new Vuex.Store({
     },
     isLive: state => state.live,
     showWiners: state => state.showWiners
-
   },
   mutations: {
     setCurrent(state, entry) {

@@ -3,32 +3,69 @@
     <div v-if="!showGallery && !showModal">
       <div class>
         <div class="box has-background-grey-lighter">
-          <div class="tile is-ancestor is-vertical">
-            <div class="tile">
-              <article class="tile is-child notification has-background-grey-lighter">
-                <p class="title">Main Gallery</p>
-              </article>
-            </div>
-            <div class="tile is-12">
-              <div class="tile is-parent">
-                <article class="tile is-child notification">
-                  <p class="title">Guided Tour</p>
-                  <div class="content subtitle">All Members' images in a video slideshow</div>
-                  <button class="button is-large is-link" @click="video_members()">Play...</button>
+          <div class="tile is-ancestor">
+            <div class="tile is-parent is-vertical">
+              <div class="tile ">
+                <article
+                  class="tile is-child notification has-background-grey-lighter"
+                >
+                  <p class="title">Main Gallery</p>
                 </article>
               </div>
-              <div class="tile is-parent">
-                <article class="tile is-child notification">
-                  <p class="title">Self-Guided Tour</p>
-                  <div class="content subtitle">You choose when to move on</div>
-                  <button class="button is-large is-link" @click="selfGuided()">Enter...</button>
-                </article>
+              <div class="tile is-child has-text-centered">
+                <p class="is-size-4">
+                  Don't forget to vote for your favourite image!
+                </p>
+                <p class="is-size-4">
+                  Click the <i class="fas fa-heart"></i> in the
+                  <router-link to="/Catalogue">catalogue page.</router-link>
+                </p>
+              </div>
+              <div class="tile">
+                <div class="tile is-vertical">
+                  <div class="tile is-parent">
+                    <article class="tile is-child notification">
+                      <p class="title">Guided Tour</p>
+                      <div class="content subtitle">
+                        All Members' images in a video slideshow
+                      </div>
+                      <button
+                        class="button is-large is-link"
+                        @click="video_members()"
+                      >
+                        Play...
+                      </button>
+                    </article>
+                  </div>
+
+                  <div class="tile is-parent">
+                    <article class="tile is-child notification">
+                      <p class="title">Self-Guided Tour</p>
+                      <div class="content subtitle">
+                        You choose when to move on
+                      </div>
+                      <button
+                        class="button is-large is-link"
+                        @click="selfGuided()"
+                      >
+                        Enter...
+                      </button>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tile is-4 is-parent is-vertical">
+              <div class="tile is-child">
+                <img
+                  src="gallery_img.jpg"
+                  alt="Placeholder image"
+                  class="image mt-5"
+                  style="height:50vh;  margin-left: auto; margin-right: auto;"
+                />
               </div>
             </div>
           </div>
-        </div>
-        <div class>
-          <Panels />
         </div>
       </div>
     </div>
@@ -41,6 +78,7 @@
 
     <div
       v-show="showModal"
+      ref="gg"
       @close="showModal = false"
       @hook:beforeDestroy="reset()"
       class="modal is-active"
@@ -49,7 +87,11 @@
       <div id="videoWrapper" class="modal-content">
         <div class="container">
           <div class="videoWrapper">
-            <my-video ref="video" :sources="video.sources" :options="video.options"></my-video>
+            <my-video
+              ref="video"
+              :sources="video.sources"
+              :options="video.options"
+            ></my-video>
           </div>
         </div>
       </div>
@@ -60,16 +102,13 @@
 
 <script>
 import myVideo from "vue-video";
-
-// @ is an alias to /src
-// import GalleryComp3 from "@/components/GalleryComp3";
 import GalleryComp2 from "@/components/GalleryComp2";
-import Panels from "@/views/Panels";
-// import { vueVimeoPlayer } from "vue-vimeo-player";
+
 export default {
   name: "Gallery",
   data() {
     return {
+      videoPlaying: false,
       videoID: "382890997",
       showGallery: false,
       gallery: "",
@@ -79,23 +118,19 @@ export default {
         sources: [
           {
             src:
-              "https://www.dropbox.com/s/83ks5lom1lkeiie/Bishop%27s%20Waltham%20Photographic%20Society%20-%20Exhibition%202019.mp4?raw=1",
+              "https://www.dropbox.com/s/h60j9yoeheutd51/2020Members%20003.mp4?raw=1",
             type: "video/mp4"
           }
         ],
         options: {
           autoplay: false,
           volume: 0.0
-          // poster: 'http://covteam.u.qiniudn.com/poster.png'
         }
       }
     };
   },
   components: {
-    // GalleryComp3,
     GalleryComp2,
-    // vueVimeoPlayer,
-    Panels,
     myVideo
   },
   mounted() {
@@ -117,10 +152,14 @@ export default {
       this.showGallery = false;
     },
     reset() {
+      console.log("RESET GALLE");
       this.showGallery = false;
       this.showModal = false;
-      if (this.$refs.video) {
-        this.$refs.video.play();
+      if (this.videoPlaying) {
+        if (this.$refs.video) {
+          this.$refs.video.play();
+        }
+        this.videoPlaying = false;
       }
     },
     video_junior() {
@@ -130,6 +169,7 @@ export default {
     video_members() {
       this.$refs.video.play();
       this.showModal = true;
+      this.videoPlaying = true;
     }
   },
   beforeRouteUpdate(to, from, next) {
@@ -144,5 +184,9 @@ export default {
 <style lang="scss" scoped>
 #videoWrapper {
   max-height: 100vh !important;
+}
+.has-image-centered {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

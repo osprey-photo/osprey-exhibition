@@ -21,14 +21,14 @@
             <div class="tile is-child">
               <div class="card is-shadowless has-transparent-background">
                 <div class="card-image">
-                  <figure class="image is-200by200" @click="galleryUp()">
+                  <a class="image" @click="galleryUp()">
                     <img
-                      v-if="chunk_size > 3"
+                      v-if="width > 3"
                       :src="entry.thumbnail"
                       alt="Placeholder image"
                     />
                     <img v-else :src="entry.large" alt="Placeholder image" />
-                  </figure>
+                  </a>
                 </div>
                 <div class="card-content">
                   <div class="content">
@@ -100,13 +100,16 @@ export default {
   components: { GalleryComp2 },
   computed: {
     imgsArr() {
-      return this.$store.getters
-        .getAll([this.$route.params.category])
-        .map(e => e.large);
+      return (
+        this.$store.getters
+          .getAll([this.$route.params.category])
+          // .sort((a,b) => {console.log("--> "+ a); return a.order - b.order})
+          .map(e => e.large)
+      );
     },
     entries() {
       return chunkArray(
-        this.$store.getters.getAll([this.$route.params.category]),
+        this.$store.getters.getAll([this.$route.params.category]).sort((a,b) => {console.log("--> "+ a); return a.order - b.order}),
         this.width
       );
     }

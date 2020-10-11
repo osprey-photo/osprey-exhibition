@@ -1,14 +1,18 @@
+//  Copyright Matthew B White 2020 All Rights Reserved.
+//  SPDX-License-Identifier: Apache-2.0
+
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Beta from "../views/Beta.vue";
 import Gallery from "../views/Gallery.vue";
 import Junior from "../views/Junior.vue";
-// import Catalog from "../views/Catalog.vue";
 import Catalog2 from "../views/Catalog2.vue";
 import Guestbook from "../components/Guestbook.vue";
 import TiledGallery from "../components/TiledGallery.vue";
 import VotingResults from "../views/votingresults.vue";
+import CommentResults from "../views/commentresults";
+import Panels from "../views/Panels.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -18,14 +22,14 @@ const routes = [
     component: Home
   },
   {
-    path: "/beta",
-    name: "Beta",
-    component: Beta
-  },
-  {
     path: "/gallery",
     name: "Gallery",
     component: Gallery
+  },
+  {
+    path: "/panelsgallery",
+    name: "PanelsGallery",
+    component: Panels
   },
   {
     path: "/catalogue",
@@ -33,26 +37,30 @@ const routes = [
     component: Catalog2
   },
   {
-    path: "/cat2",
-    name: "Cat2",
-    component: Catalog2
-  },
-  {
     path: "/junior",
     name: "Junior",
-    component: Junior,
-    props: { gallery: 'junior' }
+    component: Junior
   },
   {
     path: "/guestbook",
     name: "Guestbook",
     component: Guestbook
-  },  {
+  },
+  {
     path: "/vr",
     name: "votingresults",
     component: VotingResults
   },
-  { path: '/panels/:category', name:'Panels', component: TiledGallery }
+  {
+    path: "/cr",
+    name: "commentresults",
+    component: CommentResults
+  },
+  {
+    path: "/panels/:category",
+    name: "Panels",
+    component: TiledGallery
+  }
 ];
 
 const router = new VueRouter({
